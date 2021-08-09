@@ -1,0 +1,93 @@
+<div class="col-md-12">
+    <ul class="nav nav-tabs mt-4 mb-4" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="old-tab" data-toggle="tab" href="#old" role="tab" aria-controls="old" aria-selected="true">Estudiantes viejos</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="new-tab" data-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="false">Estudiantes nuevos</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="old" role="tabpanel" aria-labelledby="old-tab">
+            <div class="col-md-12">
+                <table datatable [dtOptions]="dtOptions2" [dtTrigger]="dtTrigger2" class="order-column table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Patronus</th>
+                        <th>Edad</th>
+                        <th>Imagen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let student of data">
+                        <td>{{ student.name }}</td>
+                        <td>{{ (student.patronus) ? student.patronus : 'No cuenta con patronus' }}</td>
+                        <td>{{ (student.yearOfBirth) ? fecha - student.yearOfBirth + ' Años' : 'Sin registro'}}</td>
+                        <td><img src="{{ student.image }}" class="img-fluid" alt="{{student.name}}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="new" role="tabpanel" aria-labelledby="new-tab">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newstudent">
+                Agregar nuevo estudiante
+            </button>
+            <div class="modal fade" id="newstudent" tabindex="-1" role="dialog" aria-labelledby="newstudentLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="newstudentLabel">Nuevo estudiante</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="nombreNoVal">
+                                <small *ngIf="nombreNoVal" class="text-danger">
+                                    Campo requerido
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Patronus" formControlName="patronus" [class.is-invalid]="patronusNoVal">
+                                <small *ngIf="patronusNoVal" class="text-danger">
+                                    Campo requerido
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="number" placeholder="Edad" formControlName="edad" [class.is-invalid]="edadNoVal">
+                                <small *ngIf="edadNoVal" class="text-danger">
+                                    Campo requerido
+                                </small>
+                            </div>
+                            <button type="submit">Guardar</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                            
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <table datatable [dtOptions]="dtOptions2" [dtTrigger]="dtTrigger2" class="order-column table table-bordered new">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Patronus</th>
+                    <th>Edad</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let studentNew of new">
+                    <td>{{ (studentNew.nombre) ? studentNew.nombre : '' }}</td>
+                    <td>{{ (studentNew.patronus) ? studentNew.patronus : 'No cuenta con patronus' }}</td>
+                    <td>{{ (studentNew.edad) ? studentNew.edad : '' }} Años</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

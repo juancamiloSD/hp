@@ -1,0 +1,20 @@
+<div class="col-md-12 pt-4">
+    <table datatable [dtOptions]="dtOptions3" [dtTrigger]="dtTrigger3" class="order-column table table-bordered">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Patronus</th>
+            <th>Edad</th>
+            <th>Imagen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let staff of data">
+            <td>{{ staff.name }}</td>
+            <td>{{ (staff.patronus) ? staff.patronus : 'No cuenta con patronus' }}</td>
+            <td>{{ (staff.yearOfBirth) ? fecha - staff.yearOfBirth + ' Años' : 'Sin registro'}}</td>
+            <td><img src="{{ staff.image }}" class="img-fluid" alt="{{staff.name}}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

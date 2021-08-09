@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## DOCUMENTACIÓN
+
+### Componentes
+
+* home - Corresponde a un componente principal donde se importa los selectores
+* house - Corresponde a un componente donde se construye el selector de las casas (gryffindor, slytherin, ravenclaw, hufflepuff)
+* staff - Corresponde a un componente donde se construye la vista de los profesores
+* students - Corresponde a un componente donde se construye la vista de los estudiantes y la la creación de estudiantes nuevos almancenados en el LocalStorage
+
+### Servicios
+
+* services - Construcción de las peticiones GET de los recursos WebServices compartidos
+* global - Variable de URL raiz de la peticcion http del WebServices

@@ -1,0 +1,28 @@
+<div class="col-md-12 selectHouse pt-4 pb-4">
+    <div class="form-inline">
+        <label class="pr-3">Seleccione casa</label>
+        <select [(ngModel)]="seleccionado" (change)="capturarPersonajes(seleccionado)" class="form-control w-25">
+            <option [value]="item.house" *ngFor="let item of lista">{{item.house}}</option>
+        </select>
+    </div>
+</div>
+<div class="col-md-12">
+    <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1" class="order-column table table-bordered">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Patronus</th>
+            <th>Edad</th>
+            <th>Imagen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let house of data">
+            <td>{{ house.name }}</td>
+            <td>{{ (house.patronus) ? house.patronus : 'No cuenta con patronus' }}</td>
+            <td>{{ (house.yearOfBirth) ? fecha - house.yearOfBirth + ' Años' : 'Sin registro'}}</td>
+            <td><img src="{{ house.image }}" class="img-fluid w-50" alt="{{house.name}}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
